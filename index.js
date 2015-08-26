@@ -32,16 +32,16 @@ var JSONReporter = function (baseReporterDecorator, config, helper, logger) {
     if(stdout) process.stdout.write(JSON.stringify(history));
     if(outputFile) {
       helper.mkdirIfNotExists(path.dirname(outputFile), function() {
-      fs.writeFile(outputFile, JSON.stringify(history), function(err) {
-        if (err) {
-          log.warn('Cannot write JSON\n\t' + err.message);
-        } else {
-          log.debug('JSON written to "%s".', outputFile);
-        }
+        fs.writeFile(outputFile, JSON.stringify(history), function(err) {
+          if (err) {
+            log.warn('Cannot write JSON\n\t' + err.message);
+          } else {
+            log.debug('JSON written to "%s".', outputFile);
+          }
+          history.result = {};
+        });
       });
-    });
     }
-    history.result = {};
   };
 };
 
